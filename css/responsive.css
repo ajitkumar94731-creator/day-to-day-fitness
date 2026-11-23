@@ -1,0 +1,19 @@
+/* responsive.css */
+/* Basic responsive adjustments */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        flex-direction: column;
+        display: none;
+        background-color: var(--black);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 1rem;
+    }
+    .navbar .nav-links.show { display: flex; }
+    .menu-toggle { display: block; }
+    .hero { height: 60vh; }
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content .tagline { font-size: 1.2rem; }
+}

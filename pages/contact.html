@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact – Day to Day Fitness</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo"><img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo" /></div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="trainers.html">Trainers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="register.html" class="btn-primary">Join Now</a></li>
+        </ul>
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <section class="content-section" style="padding:2rem; max-width:900px; margin:auto;">
+        <h1>Contact Us</h1>
+        <p><strong>Day to Day Fitness</strong></p>
+        <p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a> (WhatsApp: <a href="https://wa.me/918210884325" target="_blank">Chat</a>)</p>
+        <p>Adil: <a href="tel:+919606434277">+91 9606434277</a> (WhatsApp: <a href="https://wa.me/919606434277" target="_blank">Chat</a>)</p>
+        <p>Location: Chokkanahalli, Karnataka, India<br />Near Presidency University Girls and Boys Hostel</p>
+        <p>Instagram: @wi_fi_9, @m_adilll</p>
+
+        <h2>Send us a message</h2>
+        <form id="contactForm" style="display:flex; flex-direction:column; gap:0.8rem;">
+            <input type="text" name="name" placeholder="Your Name" required style="padding:0.5rem;" />
+            <input type="email" name="email" placeholder="Your Email" required style="padding:0.5rem;" />
+            <textarea name="message" placeholder="Your Message" rows="4" required style="padding:0.5rem;"></textarea>
+            <button type="submit" class="btn-primary" style="width:max-content;">Submit</button>
+        </form>
+
+        <h2>Find us on the map</h2>
+        <div style="width:100%; height:300px; margin-top:1rem;">
+            <iframe src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Chokkanahalli,Karnataka,India" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- WhatsApp floating button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question." target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question." target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="footer-col"><h3>Day to Day Fitness</h3><p>Chokkanahalli, Karnataka, India<br />Near Presidency University Girls and Boys Hostel</p></div>
+            <div class="footer-col"><h4>Contact</h4><p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p><p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p></div>
+            <div class="footer-col"><h4>Follow Us</h4><p>Instagram: @wi_fi_9, @m_adilll</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Day to Day Fitness. All rights reserved.</p></div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
