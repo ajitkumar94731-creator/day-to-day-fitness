@@ -1,18 +1,361 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Membership Plans – Day to Day Fitness</title>
+
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #090909;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .membership-hero {
+            min-height: 340px;
+            padding: 90px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background:
+                linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.88)),
+                url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=85');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .membership-hero .tag {
+            color: #d6ad45;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .membership-hero h1 {
+            font-size: clamp(38px, 6vw, 65px);
+            font-weight: 900;
+            margin: 18px 0;
+            text-transform: uppercase;
+        }
+
+        .membership-hero h1 span {
+            color: #d6ad45;
+        }
+
+        .membership-hero p {
+            color: #ccc;
+            font-size: 16px;
+        }
+
+        .membership-section {
+            max-width: 1250px;
+            margin: auto;
+            padding: 75px 22px 90px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-heading small {
+            color: #d6ad45;
+            letter-spacing: 4px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            margin: 15px 0;
+            font-weight: 900;
+        }
+
+        .section-heading h2 span {
+            color: #d6ad45;
+        }
+
+        .section-heading p {
+            color: #999;
+            font-size: 15px;
+        }
+
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .membership-card {
+            background: #151515;
+            border: 1px solid #333;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: .35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .membership-card:hover {
+            transform: translateY(-12px);
+            border-color: #d6ad45;
+            box-shadow: 0 18px 45px rgba(214,173,69,.13);
+        }
+
+        .membership-card.featured {
+            border: 1px solid #d6ad45;
+            box-shadow: 0 0 30px rgba(214,173,69,.12);
+        }
+
+        .popular-label {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: linear-gradient(135deg, #f0cf70, #b88a25);
+            color: #111;
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 900;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .membership-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .membership-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .membership-card .image-wrap {
+            overflow: hidden;
+        }
+
+        .membership-body {
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .plan-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(214,173,69,.13);
+            color: #d6ad45;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .membership-body h3 {
+            font-size: 23px;
+            margin: 0 0 12px;
+            font-weight: 900;
+        }
+
+        .membership-body > p {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.7;
+            min-height: 48px;
+            margin: 0 0 20px;
+        }
+
+        .price-box {
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding: 18px 0;
+            margin-bottom: 22px;
+        }
+
+        .price-box small {
+            color: #999;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .price-box strong {
+            display: block;
+            font-size: 30px;
+            color: #d6ad45;
+            margin-top: 8px;
+        }
+
+        .price-box strong span {
+            font-size: 14px;
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .plan-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .plan-actions a {
+            text-align: center;
+            text-decoration: none;
+            padding: 13px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .join-btn {
+            background: linear-gradient(135deg, #f0cf70, #b88a25);
+            color: #111;
+        }
+
+        .join-btn:hover {
+            box-shadow: 0 7px 20px rgba(214,173,69,.25);
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-btn {
+            background: #163d2a;
+            color: #6bff9c;
+            border: 1px solid #246a43;
+        }
+
+        .whatsapp-btn:hover {
+            background: #25d366;
+            color: #fff;
+        }
+
+        .benefit-section {
+            background: linear-gradient(120deg, #211c10, #111);
+            border-top: 1px solid rgba(214,173,69,.3);
+            border-bottom: 1px solid rgba(214,173,69,.3);
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        .benefit-section h2 {
+            font-size: 28px;
+            margin-bottom: 35px;
+        }
+
+        .benefit-section h2 span {
+            color: #d6ad45;
+        }
+
+        .benefit-grid {
+            max-width: 1050px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .benefit-item {
+            padding: 20px;
+        }
+
+        .benefit-item i {
+            font-size: 30px;
+            color: #d6ad45;
+            margin-bottom: 15px;
+        }
+
+        .benefit-item h3 {
+            font-size: 17px;
+            margin: 5px 0 10px;
+        }
+
+        .benefit-item p {
+            color: #aaa;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 25px;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .whatsapp-float a {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #25d366;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,.4);
+        }
+
+        @media (max-width: 900px) {
+            .membership-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .membership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .membership-section {
+                padding: 50px 16px;
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .membership-hero {
+                padding: 70px 15px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <!-- Navigation -->
+
     <nav class="navbar">
-        <div class="logo"><img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo" /></div>
+        <div class="logo">
+            <img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo" />
+        </div>
+
         <ul class="nav-links">
             <li><a href="../index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -22,66 +365,191 @@
             <li><a href="contact.html">Contact</a></li>
             <li><a href="register.html" class="btn-primary">Join Now</a></li>
         </ul>
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
     </nav>
 
-    <section class="content-section" style="padding:2rem; max-width:1200px; margin:auto;">
-        <h1>Membership Plans</h1>
-        <div class="card-grid">
+    <section class="membership-hero">
+        <div class="tag">Invest In Yourself</div>
+        <h1>Choose Your <span>Membership</span></h1>
+        <p>Find the right plan and start your fitness journey with us.</p>
+    </section>
+
+    <section class="membership-section">
+
+        <div class="section-heading">
+            <small>OUR MEMBERSHIP OPTIONS</small>
+            <h2>FIND YOUR <span>PERFECT PLAN</span></h2>
+            <p>Choose a membership that matches your fitness goals.</p>
+        </div>
+
+        <div class="membership-grid">
+
             <!-- Basic -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1591557845638-09e1cbdc5d8b?auto=format&fit=crop&w=800&q=80" alt="Basic Plan" />
-                <div class="card-body">
+            <div class="membership-card">
+                <div class="image-wrap">
+                    <img src="https://images.unsplash.com/photo-1591557845638-09e1cbdc5d8b?auto=format&fit=crop&w=800&q=80" alt="Basic Plan" />
+                </div>
+
+                <div class="membership-body">
+                    <div class="plan-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+
                     <h3>Basic Membership</h3>
                     <p>Gym access, general workout, basic equipment.</p>
-                    <p><strong>Price:</strong> <span contenteditable="true">₹999 / month</span></p>
-                    <a href="../pages/register.html?plan=Standard" class="btn-primary">Join Now</a>
-                    <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Basic%20plan." target="_blank" class="btn-primary" style="margin-top:0.5rem; background:#25D366;">WhatsApp Ajit</a>
-                    <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Basic%20plan." target="_blank" class="btn-primary" style="margin-top:0.5rem; background:#25D366;">WhatsApp Adil</a>
+
+                    <div class="price-box">
+                        <small>Membership Price</small>
+                        <strong><span contenteditable="true">₹999 / month</span></strong>
+                    </div>
+
+                    <div class="plan-actions">
+                        <a href="../pages/register.html?plan=Standard" class="join-btn">Join Now <i class="fas fa-arrow-right"></i></a>
+
+                        <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Basic%20plan." target="_blank" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Ajit
+                        </a>
+
+                        <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Basic%20plan." target="_blank" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Adil
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <!-- Standard -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1588776818919-339efc75c9b1?auto=format&fit=crop&w=800&q=80" alt="Standard Plan" />
-                <div class="card-body">
+            <div class="membership-card featured">
+                <div class="popular-label">POPULAR PLAN</div>
+
+                <div class="image-wrap">
+                    <img src="https://images.unsplash.com/photo-1588776818919-339efc75c9b1?auto=format&fit=crop&w=800&q=80" alt="Standard Plan" />
+                </div>
+
+                <div class="membership-body">
+                    <div class="plan-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+
                     <h3>Standard Membership</h3>
                     <p>Full gym access, personal trainer guidance, workout plan.</p>
-                    <p><strong>Price:</strong> <span contenteditable="true">₹1,499 / month</span></p>
-                    <a href="../pages/register.html?plan=Standard" class="btn-primary">Join Now</a>
-                    <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Standard%20plan." target="_blank" class="btn-primary" style="margin-top:0.5rem; background:#25D366;">WhatsApp Ajit</a>
-                    <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Standard%20plan." target="_blank" class="btn-primary" style="margin-top:0.5rem; background:#25D366;">WhatsApp Adil</a>
+
+                    <div class="price-box">
+                        <small>Membership Price</small>
+                        <strong><span contenteditable="true">₹1,499 / month</span></strong>
+                    </div>
+
+                    <div class="plan-actions">
+                        <a href="../pages/register.html?plan=Standard" class="join-btn">Join Now <i class="fas fa-arrow-right"></i></a>
+
+                        <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Standard%20plan." target="_blank" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Ajit
+                        </a>
+
+                        <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Standard%20plan." target="_blank" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Adil
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <!-- Premium -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1508606572321-901ea5d6ffad?auto=format&fit=crop&w=800&q=80" alt="Premium Plan" />
-                <div class="card-body">
+            <div class="membership-card">
+                <div class="image-wrap">
+                    <img src="https://images.unsplash.com/photo-1508606572321-901ea5d6ffad?auto=format&fit=crop&w=800&q=80" alt="Premium Plan" />
+                </div>
+
+                <div class="membership-body">
+                    <div class="plan-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+
                     <h3>Premium Membership</h3>
                     <p>All facilities, personal trainer, diet guidance, progress tracking.</p>
-                    <p><strong>Price:</strong> <span contenteditable="true">₹1,999 / month</span></p>
-                    <a href="../pages/register.html?plan=Standard" class="btn-primary">Join Now</a>
-                    <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Premium%20plan." target="_blank" class="btn-primary" style="margin-top:0.5rem; background:#25D366;">WhatsApp Ajit</a>
-                    <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Premium%20plan." target="_blank" class="btn-primary" style="margin-top:0.5rem; background:#25D366;">WhatsApp Adil</a>
+
+                    <div class="price-box">
+                        <small>Membership Price</small>
+                        <strong><span contenteditable="true">₹1,999 / month</span></strong>
+                    </div>
+
+                    <div class="plan-actions">
+                        <a href="../pages/register.html?plan=Standard" class="join-btn">Join Now <i class="fas fa-arrow-right"></i></a>
+
+                        <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Premium%20plan." target="_blank" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Ajit
+                        </a>
+
+                        <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20would%20like%20more%20information%20about%20the%20Premium%20plan." target="_blank" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Adil
+                        </a>
+                    </div>
                 </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="benefit-section">
+        <h2>WHY CHOOSE <span>DAY TO DAY FITNESS?</span></h2>
+
+        <div class="benefit-grid">
+            <div class="benefit-item">
+                <i class="fas fa-dumbbell"></i>
+                <h3>Modern Equipment</h3>
+                <p>Train with gym equipment and work towards your fitness goals.</p>
+            </div>
+
+            <div class="benefit-item">
+                <i class="fas fa-user-check"></i>
+                <h3>Trainer Guidance</h3>
+                <p>Get support and guidance during your fitness journey.</p>
+            </div>
+
+            <div class="benefit-item">
+                <i class="fas fa-trophy"></i>
+                <h3>Fitness Goals</h3>
+                <p>Stay consistent and keep improving with every workout.</p>
             </div>
         </div>
     </section>
 
-    <!-- WhatsApp floating button -->
     <div class="whatsapp-float">
-        <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20membership%20options." target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20membership%20options." target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20membership%20options." target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20membership%20options." target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
     </div>
 
     <footer class="footer">
         <div class="footer-columns">
-            <div class="footer-col"><h3>Day to Day Fitness</h3><p>Chokkanahalli, Karnataka, India<br />Near Presidency University Girls and Boys Hostel</p></div>
-            <div class="footer-col"><h4>Contact</h4><p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p><p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p></div>
-            <div class="footer-col"><h4>Follow Us</h4><p>Instagram: @wi_fi_9, @m_adilll</p></div>
+            <div class="footer-col">
+                <h3>Day to Day Fitness</h3>
+                <p>Chokkanahalli, Karnataka, India<br />Near Presidency University Girls and Boys Hostel</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p>
+                <p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <p>Instagram: @wi_fi_9, @m_adilll</p>
+            </div>
         </div>
-        <div class="footer-bottom"><p>&copy; 2026 Day to Day Fitness. All rights reserved.</p></div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Day to Day Fitness. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="../js/main.js"></script>
+
 </body>
 </html>
