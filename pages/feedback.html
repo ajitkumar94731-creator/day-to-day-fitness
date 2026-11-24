@@ -1,17 +1,299 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Customer Feedback – Day to Day Fitness</title>
+
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #090909;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .feedback-hero {
+            min-height: 300px;
+            padding: 90px 20px 70px;
+            text-align: center;
+            background:
+                linear-gradient(rgba(0,0,0,.78), rgba(0,0,0,.9)),
+                url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=85');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .feedback-hero .tag {
+            color: #d6ad45;
+            letter-spacing: 5px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .feedback-hero h1 {
+            font-size: clamp(36px, 6vw, 65px);
+            font-weight: 900;
+            margin: 18px 0;
+            text-transform: uppercase;
+        }
+
+        .feedback-hero h1 span {
+            color: #d6ad45;
+        }
+
+        .feedback-hero p {
+            color: #ccc;
+            font-size: 16px;
+        }
+
+        .feedback-wrapper {
+            max-width: 1100px;
+            margin: -35px auto 80px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feedback-card {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            background: #151515;
+            border: 1px solid rgba(214,173,69,.35);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,.5);
+        }
+
+        .feedback-info {
+            padding: 55px 40px;
+            background: linear-gradient(145deg, #242018, #111);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feedback-info .icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            background: #d6ad45;
+            color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            margin-bottom: 25px;
+        }
+
+        .feedback-info h2 {
+            font-size: 32px;
+            line-height: 1.2;
+            margin: 0 0 18px;
+        }
+
+        .feedback-info h2 span {
+            color: #d6ad45;
+        }
+
+        .feedback-info p {
+            color: #bbb;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .feedback-points {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+        }
+
+        .feedback-points div {
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        .feedback-points i {
+            color: #d6ad45;
+            margin-right: 10px;
+        }
+
+        .feedback-form-area {
+            padding: 50px 45px;
+        }
+
+        .form-heading {
+            margin-bottom: 30px;
+        }
+
+        .form-heading small {
+            color: #d6ad45;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .form-heading h2 {
+            font-size: 27px;
+            margin: 12px 0 8px;
+        }
+
+        .form-heading p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        #feedbackForm {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ddd;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #383838;
+            border-radius: 10px;
+            outline: none;
+            background: #202020;
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #d6ad45;
+            box-shadow: 0 0 0 3px rgba(214,173,69,.12);
+        }
+
+        .form-group select option {
+            background: #202020;
+            color: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .submit-review {
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f0cf70, #b88a25);
+            color: #111;
+            font-size: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .submit-review:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(214,173,69,.25);
+        }
+
+        #feedbackMsg {
+            margin-top: 15px;
+            color: #d6ad45;
+            font-size: 14px;
+        }
+
+        .feedback-bottom {
+            text-align: center;
+            padding: 0 20px 70px;
+        }
+
+        .feedback-bottom h2 {
+            font-size: 25px;
+        }
+
+        .feedback-bottom h2 span {
+            color: #d6ad45;
+        }
+
+        .feedback-bottom p {
+            color: #999;
+            margin-top: 10px;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 25px;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .whatsapp-float a {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #25d366;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,.4);
+        }
+
+        @media (max-width: 768px) {
+            .feedback-card {
+                grid-template-columns: 1fr;
+            }
+
+            .feedback-info {
+                padding: 35px 28px;
+            }
+
+            .feedback-form-area {
+                padding: 35px 25px;
+            }
+
+            .feedback-hero {
+                padding: 75px 15px 65px;
+            }
+        }
+    </style>
 </head>
+
 <body>
+
     <nav class="navbar">
-        <div class="logo"><img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo" /></div>
+        <div class="logo">
+            <img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo" />
+        </div>
+
         <ul class="nav-links">
             <li><a href="../index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -21,42 +303,125 @@
             <li><a href="contact.html">Contact</a></li>
             <li><a href="register.html" class="btn-primary">Join Now</a></li>
         </ul>
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
     </nav>
 
-    <section class="content-section" style="padding:2rem; max-width:600px; margin:auto;">
-        <h1>Customer Feedback</h1>
-        <form id="feedbackForm" style="display:flex; flex-direction:column; gap:0.8rem;">
-            <input type="text" name="name" placeholder="Your Name" required />
-            <select name="rating" required>
-                <option value="" disabled selected>Rating (1-5)</option>
-                <option value="1">1 – Poor</option>
-                <option value="2">2 – Fair</option>
-                <option value="3">3 – Good</option>
-                <option value="4">4 – Very Good</option>
-                <option value="5">5 – Excellent</option>
-            </select>
-            <textarea name="comment" placeholder="Your feedback" rows="4" required></textarea>
-            <button type="submit" class="btn-primary">Submit Review</button>
-        </form>
-        <div id="feedbackMsg" style="margin-top:1rem; color: var(--red);"></div>
+    <section class="feedback-hero">
+        <div class="tag">Your Voice Matters</div>
+        <h1>Customer <span>Feedback</span></h1>
+        <p>Your experience helps us build a stronger fitness community.</p>
+    </section>
+
+    <section class="feedback-wrapper">
+        <div class="feedback-card">
+
+            <div class="feedback-info">
+                <div class="icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+
+                <h2>WE VALUE YOUR <span>OPINION</span></h2>
+
+                <p>
+                    At Day to Day Fitness, your feedback matters.
+                    Share your experience and help us improve our
+                    gym, facilities and training environment.
+                </p>
+
+                <div class="feedback-points">
+                    <div><i class="fas fa-star"></i> Share your gym experience</div>
+                    <div><i class="fas fa-heart"></i> Help us improve our services</div>
+                    <div><i class="fas fa-dumbbell"></i> Build a stronger community</div>
+                </div>
+            </div>
+
+            <div class="feedback-form-area">
+                <div class="form-heading">
+                    <small>WRITE A REVIEW</small>
+                    <h2>Tell Us What You Think</h2>
+                    <p>Your honest feedback makes a difference.</p>
+                </div>
+
+                <form id="feedbackForm">
+
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" name="name" placeholder="Enter your name" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Rating</label>
+                        <select name="rating" required>
+                            <option value="" disabled selected>Rating (1-5)</option>
+                            <option value="1">1 – Poor</option>
+                            <option value="2">2 – Fair</option>
+                            <option value="3">3 – Good</option>
+                            <option value="4">4 – Very Good</option>
+                            <option value="5">5 – Excellent</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Feedback</label>
+                        <textarea name="comment" placeholder="Write your feedback here..." rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-review">
+                        <i class="fas fa-paper-plane"></i> Submit Review
+                    </button>
+
+                </form>
+
+                <div id="feedbackMsg"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="feedback-bottom">
+        <h2>THANK YOU FOR BEING PART OF <span>OUR FITNESS FAMILY</span></h2>
+        <p>Day to Day Fitness – Train • Improve • Stay Fit</p>
     </section>
 
     <div class="whatsapp-float">
-        <a href="https://wa.me/918210884325" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://wa.me/919606434277" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/918210884325" target="_blank" aria-label="WhatsApp Ajit">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://wa.me/919606434277" target="_blank" aria-label="WhatsApp Adil">
+            <i class="fab fa-whatsapp"></i>
+        </a>
     </div>
 
     <footer class="footer">
         <div class="footer-columns">
-            <div class="footer-col"><h3>Day to Day Fitness</h3><p>Chokkanahalli, Karnataka, India<br/>Near Presidency University Girls and Boys Hostel</p></div>
-            <div class="footer-col"><h4>Contact</h4><p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p><p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p></div>
-            <div class="footer-col"><h4>Follow Us</h4><p>Instagram: @wi_fi_9, @m_adilll</p></div>
+            <div class="footer-col">
+                <h3>Day to Day Fitness</h3>
+                <p>Chokkanahalli, Karnataka, India<br/>Near Presidency University Girls and Boys Hostel</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p>
+                <p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <p>Instagram: @wi_fi_9, @m_adilll</p>
+            </div>
         </div>
-        <div class="footer-bottom"><p>&copy; 2026 Day to Day Fitness. All rights reserved.</p></div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Day to Day Fitness. All rights reserved.</p>
+        </div>
     </footer>
 
     <script type="module" src="../js/feedback.js"></script>
     <script src="../js/main.js"></script>
+
 </body>
 </html>
+    
