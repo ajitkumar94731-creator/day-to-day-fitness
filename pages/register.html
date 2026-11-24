@@ -1,71 +1,611 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register – Day to Day Fitness</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register | Day to Day Fitness</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black: #080808;
+  --dark: #111111;
+  --white: #ffffff;
+  --grey: #999999;
+  --red: #ed2525;
+  --border: #292929;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* NAVBAR */
+.navbar {
+  min-height: 75px;
+  padding: 12px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: #080808;
+}
+
+.navbar img {
+  max-height: 48px;
+  width: auto;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar ul a {
+  font-size: 12px;
+  color: #cccccc;
+  transition: .25s;
+}
+
+.navbar ul a:hover,
+.navbar ul li:last-child a {
+  color: var(--red);
+}
+
+.menu-toggle {
+  color: white;
+  cursor: pointer;
+}
+
+/* MAIN */
+.register-page {
+  padding: 65px 7% 75px;
+  min-height: 80vh;
+  background:
+    linear-gradient(120deg, #080808 60%, #151010 100%);
+}
+
+.register-heading {
+  max-width: 1100px;
+  margin: 0 auto 42px;
+}
+
+.eyebrow {
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+}
+
+.register-heading h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(48px, 8vw, 82px);
+  line-height: .95;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.register-heading h1 span {
+  color: var(--red);
+}
+
+.register-heading p {
+  margin-top: 18px;
+  color: var(--grey);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* LAYOUT */
+.registration-container {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: .75fr 1.25fr;
+  gap: 55px;
+  align-items: start;
+}
+
+/* LEFT CONTENT */
+.register-info {
+  padding: 28px 0;
+  border-top: 2px solid var(--red);
+}
+
+.info-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--red);
+  font-weight: 700;
+}
+
+.register-info h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(48px, 6vw, 75px);
+  line-height: .92;
+  margin-top: 25px;
+  font-weight: 900;
+}
+
+.register-info h2 span {
+  color: var(--red);
+}
+
+.register-info p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--grey);
+  margin-top: 22px;
+  max-width: 280px;
+}
+
+.info-bottom {
+  margin-top: 65px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.info-bottom span {
+  display: block;
+  color: var(--red);
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  margin-top: 7px;
+  letter-spacing: 2px;
+}
+
+/* FORM */
+.register-form {
+  background: var(--dark);
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--red);
+}
+
+.form-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 25px;
+}
+
+.form-title h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.form-title span {
+  color: var(--red);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  color: #dddddd;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 13px;
+  background: #090909;
+  border: 1px solid #303030;
+  border-radius: 2px;
+  outline: none;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  transition: .25s;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #777777;
+}
+
+.form-group select option {
+  background: #111111;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--red);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 24px;
+  background: var(--red);
+  color: white;
+  border: 1px solid var(--red);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.submit-btn:hover {
+  background: white;
+  border-color: white;
+  color: black;
+}
+
+#msg {
+  font-size: 13px;
+}
+
+/* CONTACT */
+.contact-strip {
+  max-width: 1100px;
+  margin: 35px auto 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.contact-strip a {
+  font-size: 11px;
+  color: #cccccc;
+  transition: .2s;
+}
+
+.contact-strip a:hover {
+  color: var(--red);
+}
+
+/* FOOTER */
+footer {
+  background: #050505;
+  border-top: 1px solid var(--border);
+  padding: 45px 7% 20px;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 35px;
+}
+
+footer h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  margin-bottom: 13px;
+  text-transform: uppercase;
+}
+
+footer h3 span {
+  color: var(--red);
+}
+
+footer p,
+footer a {
+  font-size: 11px;
+  line-height: 2;
+  color: var(--grey);
+}
+
+footer a:hover {
+  color: var(--red);
+}
+
+.copyright {
+  max-width: 1100px;
+  margin: 30px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: #777777;
+  font-size: 10px;
+}
+
+/* WHATSAPP */
+.whatsapp-float {
+  position: fixed;
+  right: 18px;
+  bottom: 20px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.whatsapp-float a {
+  height: 43px;
+  width: 43px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--red);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  transition: .2s;
+}
+
+.whatsapp-float a:hover {
+  background: white;
+  color: black;
+  transform: translateY(-3px);
+}
+
+/* RESPONSIVE */
+@media(max-width: 850px) {
+  .registration-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .register-info {
+    padding-bottom: 25px;
+  }
+
+  .info-bottom {
+    margin-top: 30px;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .navbar ul {
+    flex-wrap: wrap;
+    gap: 12px 17px;
+  }
+}
+
+@media(max-width: 600px) {
+  .register-page {
+    padding: 42px 5%;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full {
+    grid-column: auto;
+  }
+
+  .register-form {
+    padding: 22px 17px;
+  }
+
+  .navbar ul {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .navbar ul a {
+    font-size: 10px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .contact-strip {
+    flex-direction: column;
+  }
+}
+</style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo"><img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo" /></div>
-        <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="programs.html">Programs</a></li>
-            <li><a href="membership.html">Membership</a></li>
-            <li><a href="trainers.html">Trainers</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="register.html" class="btn-primary">Join Now</a></li>
-        </ul>
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-    </nav>
 
-    <section class="content-section" style="padding:2rem; max-width:600px; margin:auto;">
-        <h1>Gym Membership Registration</h1>
-        <form id="registrationForm" style="display:flex; flex-direction:column; gap:0.8rem;">
-            <input type="text" name="fullName" placeholder="Full Name" required />
-            <input type="tel" name="phone" placeholder="Phone Number (+91)" required />
-            <input type="email" name="email" placeholder="Email Address" required />
-            <input type="number" name="age" placeholder="Age" min="10" required />
-            <select name="gender">
-                <option value="" disabled selected>Gender (optional)</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-            </select>
-            <select name="membershipPlan" required>
-                <option value="" disabled selected>Select Membership Plan</option>
-                <option value="Basic">Basic</option>
-                <option value="Standard">Standard</option>
-                <option value="Premium">Premium</option>
-            </select>
-            <textarea name="fitnessGoals" placeholder="Fitness Goals (optional)" rows="3"></textarea>
-            <button type="submit" class="btn-primary">Submit Registration</button>
-        </form>
-        <div id="msg" style="margin-top:1rem; color: var(--red);"></div>
-    </section>
+<nav class="navbar">
+  <a href="../index.html">
+    <img src="../assets/logo/logo.png" alt="Day to Day Fitness">
+  </a>
 
-    <!-- WhatsApp floating button -->
-    <div class="whatsapp-float">
-        <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20membership%20plans." target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20membership%20plans." target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="membership.html">Membership</a></li>
+    <li><a href="trainers.html">Trainers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="register.html">Register</a></li>
+  </ul>
+
+  <div class="menu-toggle">☰</div>
+</nav>
+
+<main class="register-page">
+
+  <div class="register-heading">
+    <div class="eyebrow">DAY TO DAY FITNESS / REGISTRATION</div>
+    <h1>START YOUR<br><span>TRANSFORMATION.</span></h1>
+    <p>One decision can change everything. Take your first step today.</p>
+  </div>
+
+  <div class="registration-container">
+
+    <div class="register-info">
+      <div class="info-label">01 — YOUR JOURNEY BEGINS</div>
+
+      <h2>TRAIN<br>HARD.<br><span>STAY</span><br>STRONG.</h2>
+
+      <p>Build strength, improve your fitness and become the strongest version of yourself.</p>
+
+      <div class="info-bottom">
+        DAY TO DAY FITNESS
+        <span>NO SHORTCUTS. REAL RESULTS.</span>
+      </div>
     </div>
 
-    <footer class="footer">
-        <div class="footer-columns">
-            <div class="footer-col"><h3>Day to Day Fitness</h3><p>Chokkanahalli, Karnataka, India<br/>Near Presidency University Girls and Boys Hostel</p></div>
-            <div class="footer-col"><h4>Contact</h4><p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p><p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p></div>
-            <div class="footer-col"><h4>Follow Us</h4><p>Instagram: @wi_fi_9, @m_adilll</p></div>
-        </div>
-        <div class="footer-bottom"><p>&copy; 2026 Day to Day Fitness. All rights reserved.</p></div>
-    </footer>
+    <div class="register-form">
 
-    <script type="module" src="../js/registration.js"></script>
-    <script src="../js/main.js"></script>
+      <div class="form-title">
+        <h2>Registration Form</h2>
+        <span>JOIN US ↗</span>
+      </div>
+
+      <form id="registrationForm">
+
+        <div class="form-grid">
+
+          <div class="form-group full">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter email address" required>
+          </div>
+
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="10" placeholder="Enter your age" required>
+          </div>
+
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label for="membershipPlan">Membership Plan</label>
+            <select id="membershipPlan" name="membershipPlan" required>
+              <option value="">Select Membership Plan</option>
+              <option value="Basic">Basic</option>
+              <option value="Standard">Standard</option>
+              <option value="Premium">Premium</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label for="fitnessGoals">Fitness Goals</label>
+            <textarea id="fitnessGoals" name="fitnessGoals" rows="3" placeholder="Tell us about your fitness goals..."></textarea>
+          </div>
+
+        </div>
+
+        <button type="submit" class="submit-btn">Join the Fitness Journey ↗</button>
+
+        <div id="msg" style="margin-top:1rem; color: var(--red);"></div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="contact-strip">
+    <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20membership%20plans.">WhatsApp: +91 8210884325 ↗</a>
+    <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20membership%20plans.">WhatsApp: +91 9606434277 ↗</a>
+  </div>
+
+</main>
+
+<div class="whatsapp-float">
+  <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20membership%20plans." aria-label="WhatsApp Ajit">WA</a>
+  <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20membership%20plans." aria-label="WhatsApp Adil">WA</a>
+</div>
+
+<footer>
+  <div class="footer-content">
+
+    <div>
+      <h3>DAY TO DAY <span>FITNESS</span></h3>
+      <p>Chokkanahalli, Karnataka, India</p>
+      <p>Near Presidency University Girls and Boys Hostel</p>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <p>Ajit Kumar: +91 8210884325</p>
+      <p>Adil: +91 9606434277</p>
+    </div>
+
+    <div>
+      <h3>Follow Us</h3>
+      <p><a href="#">Instagram: @wi_fi_9</a></p>
+      <p><a href="#">Instagram: @m_adilll</a></p>
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 Day to Day Fitness. All Rights Reserved.
+  </div>
+</footer>
+
+<script type="module" src="../js/registration.js"></script>
+<script src="../js/main.js"></script>
+
 </body>
 </html>
