@@ -1,111 +1,520 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Workout Programs – Day to Day Fitness</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Workout Programs – Day to Day Fitness</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #090909;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* HERO */
+
+.program-hero {
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 20px;
+    background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
+    url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1500&q=85') center/cover;
+}
+
+.program-hero small {
+    color: #d6ad45;
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+
+.program-hero h1 {
+    font-size: clamp(38px,6vw,65px);
+    font-weight: 900;
+    margin: 20px 0;
+}
+
+.program-hero h1 span {
+    color: #d6ad45;
+}
+
+.program-hero p {
+    color: #ddd;
+    line-height: 1.7;
+}
+
+/* SECTION */
+
+.program-section {
+    max-width: 1250px;
+    margin: auto;
+    padding: 75px 22px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading small {
+    color: #d6ad45;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.section-heading h2 {
+    font-size: clamp(28px,4vw,42px);
+    font-weight: 900;
+}
+
+.section-heading h2 span {
+    color: #d6ad45;
+}
+
+.section-heading p {
+    color: #aaa;
+}
+
+/* GRID */
+
+.program-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 28px;
+}
+
+/* CARD */
+
+.program-card {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.program-card:hover {
+    transform: translateY(-9px);
+    border-color: #d6ad45;
+    box-shadow: 0 15px 35px rgba(214,173,69,.15);
+}
+
+/* IMAGE */
+
+.program-image {
+    width: 100%;
+    height: 245px;
+    position: relative;
+    overflow: hidden;
+    background: #242424;
+}
+
+.program-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .5s;
+}
+
+.program-card:hover .program-image img {
+    transform: scale(1.08);
+}
+
+.program-number {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+    padding: 8px 13px;
+    background: #d6ad45;
+    color: #111;
+    font-size: 12px;
+    font-weight: 900;
+    border-radius: 5px;
+}
+
+/* CARD CONTENT */
+
+.program-body {
+    padding: 25px;
+}
+
+.program-icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 12px;
+    background: rgba(214,173,69,.13);
+    color: #d6ad45;
+    border: 1px solid #8c702d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 3;
+    margin-bottom: 20px;
+}
+
+.program-body h3 {
+    font-size: 22px;
+    margin: 0 0 12px;
+}
+
+.program-body p {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.program-body strong {
+    color: #d6ad45;
+}
+
+.program-divider {
+    height: 1px;
+    background: #333;
+    margin: 18px 0;
+}
+
+.program-link {
+    display: inline-block;
+    color: #d6ad45;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+/* BANNER */
+
+.program-banner {
+    margin: 0 auto 75px;
+    max-width: 1200px;
+    padding: 55px 20px;
+    text-align: center;
+    border: 1px solid #8c702d;
+    border-radius: 15px;
+    background: linear-gradient(120deg,#201b10,#111);
+}
+
+.program-banner h2 span {
+    color: #d6ad45;
+}
+
+.program-banner p {
+    color: #bbb;
+}
+
+.program-banner a {
+    display: inline-block;
+    background: linear-gradient(135deg,#f0cf70,#b88a25);
+    padding: 14px 28px;
+    color: #111;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* WHATSAPP */
+
+.whatsapp-float {
+    position: fixed;
+    right: 20px;
+    bottom: 25px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.whatsapp-float a {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #25d366;
+    color: white;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px) {
+    .program-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px) {
+    .program-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .program-section {
+        padding: 50px 16px;
+    }
+
+    .program-image {
+        height: 230px;
+    }
+
+    .program-banner {
+        margin: 0 16px 55px;
+    }
+}
+</style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo"><img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo" /></div>
-        <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="programs.html">Programs</a></li>
-            <li><a href="membership.html">Membership</a></li>
-            <li><a href="trainers.html">Trainers</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="register.html" class="btn-primary">Join Now</a></li>
-        </ul>
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-    </nav>
 
-    <section class="content-section" style="padding:2rem; max-width:1200px; margin:auto;">
-        <h1>Our Workout Programs</h1>
-        <div class="card-grid">
-            <!-- Weight Training -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1599058917216-0c715e2c2c08?auto=format&fit=crop&w=800&q=80" alt="Weight Training" />
-                <div class="card-body">
-                    <h3>Weight Training</h3>
-                    <p>Build strength and muscle mass using free weights, machines, and barbells.</p>
-                    <p><strong>Benefits:</strong> Increased strength, bone density, metabolic boost.</p>
-                    <a href="#" class="btn-primary">View Details</a>
-                </div>
-            </div>
-            <!-- Strength Training -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1626792112099-f5f09d04100a?auto=format&fit=crop&w=800&q=80" alt="Strength Training" />
-                <div class="card-body">
-                    <h3>Strength Training</h3>
-                    <p>Focused programs to improve functional strength and power.</p>
-                    <p><strong>Benefits:</strong> Better performance, injury prevention.</p>
-                    <a href="#" class="btn-primary">View Details</a>
-                </div>
-            </div>
-            <!-- Cardio Training -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1597390180615-569863e2ce31?auto=format&fit=crop&w=800&q=80" alt="Cardio Training" />
-                <div class="card-body">
-                    <h3>Cardio Training</h3>
-                    <p>High‑intensity and steady‑state cardio sessions for heart health.</p>
-                    <p><strong>Benefits:</strong> Improved endurance, calorie burn.</p>
-                    <a href="#" class="btn-primary">View Details</a>
-                </div>
-            </div>
-            <!-- Muscle Building -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1617860903650-6559ff4822f0?auto=format&fit=crop&w=800&q=80" alt="Muscle Building" />
-                <div class="card-body">
-                    <h3>Muscle Building</h3>
-                    <p>Specialized hypertrophy routines tailored to your goals.</p>
-                    <p><strong>Benefits:</strong> Larger muscle size, confidence boost.</p>
-                    <a href="#" class="btn-primary">View Details</a>
-                </div>
-            </div>
-            <!-- Functional Training -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1518617872523-e2a8c8df9c1b?auto=format&fit=crop&w=800&q=80" alt="Functional Training" />
-                <div class="card-body">
-                    <h3>Functional Training</h3>
-                    <p>Movement‑based workouts improving everyday performance.</p>
-                    <p><strong>Benefits:</strong> Better mobility, core stability.</p>
-                    <a href="#" class="btn-primary">View Details</a>
-                </div>
-            </div>
-            <!-- Flexibility & Mobility -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1603956833954-7e5f29938e21?auto=format&fit=crop&w=800&q=80" alt="Flexibility & Mobility" />
-                <div class="card-body">
-                    <h3>Flexibility & Mobility</h3>
-                    <p>Stretching, yoga, and mobility drills for a supple body.</p>
-                    <p><strong>Benefits:</strong> Reduced injury risk, improved posture.</p>
-                    <a href="#" class="btn-primary">View Details</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- NAVIGATION -->
 
-    <!-- WhatsApp floating button -->
-    <div class="whatsapp-float">
-        <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20am%20interested%20in%20joining%20your%20gym.%20Please%20share%20the%20membership%20details%20and%20available%20facilities." target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20am%20interested%20in%20joining%20your%20gym.%20Please%20share%20the%20membership%20details%20and%20available%20facilities." target="_blank"><i class="fab fa-whatsapp"></i></a>
+<nav class="navbar">
+    <div class="logo">
+        <img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo">
     </div>
 
-    <footer class="footer">
-        <div class="footer-columns">
-            <div class="footer-col"><h3>Day to Day Fitness</h3><p>Chokkanahalli, Karnataka, India<br />Near Presidency University Girls and Boys Hostel</p></div>
-            <div class="footer-col"><h4>Contact</h4><p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p><p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p></div>
-            <div class="footer-col"><h4>Follow Us</h4><p>Instagram: @wi_fi_9, @m_adilll</p></div>
-        </div>
-        <div class="footer-bottom"><p>&copy; 2026 Day to Day Fitness. All rights reserved.</p></div>
-    </footer>
+    <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="trainers.html">Trainers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="register.html" class="btn-primary">Join Now</a></li>
+    </ul>
 
-    <script src="../js/main.js"></script>
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+</nav>
+
+<!-- HERO -->
+
+<section class="program-hero">
+    <div>
+        <small>DAY TO DAY FITNESS</small>
+        <h1>TRAIN HARDER.<br>GET <span>STRONGER.</span></h1>
+        <p>Discover our workout programs designed to help you build strength,<br> improve fitness and achieve your goals.</p>
+    </div>
+</section>
+
+<!-- WORKOUT PROGRAMS -->
+
+<section class="program-section">
+
+    <div class="section-heading">
+        <small>TRAINING THAT DELIVERS RESULTS</small>
+        <h2>OUR WORKOUT <span>PROGRAMS</span></h2>
+        <p>Choose your training style and take your fitness journey to the next level.</p>
+    </div>
+
+    <div class="program-grid">
+
+        <!-- 1 WEIGHT TRAINING -->
+
+        <div class="program-card">
+            <div class="program-image">
+                <span class="program-number">01</span>
+                <img
+                src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=85"
+                alt="Weight Training"
+                loading="eager">
+            </div>
+
+            <div class="program-body">
+                <div class="program-icon"><i class="fas fa-dumbbell"></i></div>
+                <h3>Weight Training</h3>
+                <p>Build strength and muscle mass using free weights, machines, and barbells.</p>
+                <div class="program-divider"></div>
+                <p><strong>Benefits:</strong> Increased strength, bone density, metabolic boost.</p>
+                <a href="#" class="program-link">VIEW DETAILS →</a>
+            </div>
+        </div>
+
+        <!-- 2 STRENGTH TRAINING -->
+
+        <div class="program-card">
+            <div class="program-image">
+                <span class="program-number">02</span>
+                <img
+                src="https://images.unsplash.com/photo-1534368270820-9de3d8053204?auto=format&fit=crop&w=900&q=85"
+                alt="Strength Training"
+                loading="eager">
+            </div>
+
+            <div class="program-body">
+                <div class="program-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Strength Training</h3>
+                <p>Focused programs to improve functional strength and power.</p>
+                <div class="program-divider"></div>
+                <p><strong>Benefits:</strong> Better performance, injury prevention.</p>
+                <a href="#" class="program-link">VIEW DETAILS →</a>
+            </div>
+        </div>
+
+        <!-- 3 CARDIO TRAINING -->
+
+        <div class="program-card">
+            <div class="program-image">
+                <span class="program-number">03</span>
+                <img
+                src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=900&q=85"
+                alt="Cardio Training"
+                loading="eager">
+            </div>
+
+            <div class="program-body">
+                <div class="program-icon"><i class="fas fa-heartbeat"></i></div>
+                <h3>Cardio Training</h3>
+                <p>High-intensity and steady-state cardio sessions for heart health.</p>
+                <div class="program-divider"></div>
+                <p><strong>Benefits:</strong> Improved endurance, calorie burn.</p>
+                <a href="#" class="program-link">VIEW DETAILS →</a>
+            </div>
+        </div>
+
+        <!-- 4 MUSCLE BUILDING -->
+
+        <div class="program-card">
+            <div class="program-image">
+                <span class="program-number">04</span>
+                <img
+                src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=85"
+                alt="Muscle Building"
+                loading="eager">
+            </div>
+
+            <div class="program-body">
+                <div class="program-icon"><i class="fas fa-fire"></i></div>
+                <h3>Muscle Building</h3>
+                <p>Specialized hypertrophy routines tailored to your goals.</p>
+                <div class="program-divider"></div>
+                <p><strong>Benefits:</strong> Larger muscle size, confidence boost.</p>
+                <a href="#" class="program-link">VIEW DETAILS →</a>
+            </div>
+        </div>
+
+        <!-- 5 FUNCTIONAL TRAINING -->
+
+        <div class="program-card">
+            <div class="program-image">
+                <span class="program-number">05</span>
+                <img
+                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=85"
+                alt="Functional Training"
+                loading="eager">
+            </div>
+
+            <div class="program-body">
+                <div class="program-icon"><i class="fas fa-running"></i></div>
+                <h3>Functional Training</h3>
+                <p>Movement-based workouts improving everyday performance.</p>
+                <div class="program-divider"></div>
+                <p><strong>Benefits:</strong> Better mobility, core stability.</p>
+                <a href="#" class="program-link">VIEW DETAILS →</a>
+            </div>
+        </div>
+
+        <!-- 6 FLEXIBILITY AND MOBILITY -->
+
+        <div class="program-card">
+            <div class="program-image">
+                <span class="program-number">06</span>
+                <img
+                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=85"
+                alt="Flexibility and Mobility"
+                loading="eager">
+            </div>
+
+            <div class="program-body">
+                <div class="program-icon"><i class="fas fa-spa"></i></div>
+                <h3>Flexibility & Mobility</h3>
+                <p>Stretching, yoga, and mobility drills for a supple body.</p>
+                <div class="program-divider"></div>
+                <p><strong>Benefits:</strong> Reduced injury risk, improved posture.</p>
+                <a href="#" class="program-link">VIEW DETAILS →</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- BANNER -->
+
+<section class="program-banner">
+    <h2>READY TO <span>TRANSFORM YOURSELF?</span></h2>
+    <p>Start your fitness journey with Day to Day Fitness today.</p>
+    <a href="register.html">JOIN OUR GYM →</a>
+</section>
+
+<!-- WHATSAPP -->
+
+<div class="whatsapp-float">
+
+    <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20am%20interested%20in%20joining%20your%20gym.%20Please%20share%20the%20membership%20details%20and%20available%20facilities." target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20am%20interested%20in%20joining%20your%20gym.%20Please%20share%20the%20membership%20details%20and%20available%20facilities." target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+    <div class="footer-columns">
+
+        <div class="footer-col">
+            <h3>Day to Day Fitness</h3>
+            <p>Chokkanahalli, Karnataka, India<br>Near Presidency University Girls and Boys Hostel</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p>
+            <p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <p>Instagram: @wi_fi_9, @m_adilll</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Day to Day Fitness. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="../js/main.js"></script>
+
 </body>
 </html>
