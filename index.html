@@ -1,73 +1,685 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Day to Day Fitness</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Day to Day Fitness | Transform Your Lifestyle</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --black: #080808;
+            --dark: #121212;
+            --gray: #999;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: rgba(8,8,8,.96);
+            border-bottom: 1px solid #292929;
+            padding: 15px 6%;
+        }
+
+        .navbar .logo img {
+            max-height: 55px;
+        }
+
+        .nav-links {
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links .btn-primary {
+            background: var(--gold);
+            color: #000;
+            padding: 12px 23px;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 690px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+
+            background:
+            linear-gradient(90deg,
+            rgba(0,0,0,.95) 0%,
+            rgba(0,0,0,.78) 48%,
+            rgba(0,0,0,.25) 100%),
+            url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800')
+            center/cover no-repeat;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(transparent, #080808);
+        }
+
+        .hero-content {
+            max-width: 850px;
+            padding: 90px 8%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            color: var(--gold);
+            letter-spacing: 5px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.08;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero .tagline {
+            color: #ccc;
+            letter-spacing: 4px;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        .hero-description {
+            max-width: 530px;
+            color: #aaa;
+            line-height: 1.8;
+            margin: 25px 0 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .hero-buttons a {
+            text-decoration: none;
+            padding: 15px 28px;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #080808;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-buttons a:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(212,175,55,.2);
+        }
+
+        /* STATS */
+
+        .stats-section {
+            max-width: 1200px;
+            margin: -20px auto 70px;
+            padding: 0 25px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: #151515;
+            border: 1px solid #292929;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 30px 15px;
+            border-right: 1px solid #292929;
+        }
+
+        .stat-box:last-child {
+            border: none;
+        }
+
+        .stat-box h2 {
+            color: var(--gold);
+            font-size: 32px;
+            margin: 0 0 10px;
+        }
+
+        .stat-box p {
+            color: #aaa;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        /* SECTION COMMON */
+
+        .home-section {
+            padding: 75px 7%;
+            max-width: 1350px;
+            margin: auto;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading small {
+            color: var(--gold);
+            letter-spacing: 4px;
+            font-weight: bold;
+        }
+
+        .section-heading h2 {
+            font-size: 38px;
+            margin: 15px 0;
+        }
+
+        .section-heading h2 span {
+            color: var(--gold);
+        }
+
+        .section-heading p {
+            color: #999;
+            line-height: 1.7;
+        }
+
+        /* WHY CHOOSE US */
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #1a1a1a, #101010);
+            border: 1px solid #292929;
+            border-radius: 12px;
+            padding: 32px;
+            transition: .3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-7px);
+        }
+
+        .feature-card i {
+            font-size: 30px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 19px;
+        }
+
+        .feature-card p {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* CTA */
+
+        .cta-section {
+            margin: 50px 7%;
+            padding: 75px 25px;
+            text-align: center;
+            background: linear-gradient(120deg, #211b0c, #111);
+            border: 1px solid #55451b;
+            border-radius: 15px;
+        }
+
+        .cta-section h2 {
+            font-size: 38px;
+        }
+
+        .cta-section h2 span {
+            color: var(--gold);
+        }
+
+        .cta-section p {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        /* REVIEWS */
+
+        #reviews {
+            padding: 75px 7% !important;
+            max-width: 1350px !important;
+        }
+
+        #review-summary {
+            color: var(--gold) !important;
+            text-align: center;
+            margin-bottom: 25px !important;
+        }
+
+        #review-cards .review-card,
+        #review-cards .card {
+            background: #171717;
+            border: 1px solid #303030;
+            border-radius: 12px;
+            padding: 25px;
+            color: white;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            background: #101010;
+            border-top: 1px solid #292929;
+            padding: 55px 7% 0;
+        }
+
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer h3,
+        .footer h4 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            color: #999;
+            line-height: 1.9;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #292929;
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            color: #888;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 850px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-box:nth-child(2) {
+                border-right: none;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-columns {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .hero {
+                min-height: 620px;
+                background-position: 60% center;
+            }
+
+            .hero-content {
+                padding: 70px 7%;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .hero .tagline {
+                font-size: 11px;
+                letter-spacing: 2px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading h2 {
+                font-size: 29px;
+            }
+
+            .cta-section h2 {
+                font-size: 28px;
+            }
+
+            .footer-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="assets/logo/logo.png" alt="Day to Day Fitness Logo" />
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="pages/about.html">About</a></li>
-            <li><a href="pages/programs.html">Programs</a></li>
-            <li><a href="pages/membership.html">Membership</a></li>
-            <li><a href="pages/trainers.html">Trainers</a></li>
-            <li><a href="pages/contact.html">Contact</a></li>
-            <li><a href="pages/register.html" class="btn-primary">Join Now</a></li>
-        </ul>
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>BUILD YOUR STRONGEST SELF</h1>
-            <p class="tagline">TRAIN • IMPROVE • STAY FIT</p>
-            <div class="hero-buttons">
-                <a href="pages/register.html" class="btn-primary">Join Now</a>
-                <a href="pages/programs.html" class="btn-secondary">Explore Programs</a>
-            </div>
-        </div>
-    </section>
-    <!-- Reviews Section -->
-    <section id="reviews" class="content-section" style="padding:2rem; max-width:900px; margin:auto;">
-        <h2>Customer Reviews</h2>
-        <div id="review-summary" style="margin-bottom:1rem; color: var(--red);"></div>
-        <div id="review-cards" class="card-grid"></div>
-    </section>
+<!-- NAVBAR -->
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-columns">
-            <div class="footer-col">
-                <h3>Day to Day Fitness</h3>
-                <p>Chokkanahalli, Karnataka, India<br />Near Presidency University Girls and Boys Hostel</p>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p>
-                <p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p>
-            </div>
-            <div class="footer-col">
-                <h4>Follow Us</h4>
-                <p>Instagram: @wi_fi_9, @m_adilll</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Day to Day Fitness. All rights reserved.</p>
-        </div>
-    </footer>
+<nav class="navbar">
 
-    <script type="module" src="js/home.js"></script>
-    <script src="js/main.js"></script>
+    <div class="logo">
+        <img src="assets/logo/logo.png" alt="Day to Day Fitness Logo">
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pages/about.html">About</a></li>
+        <li><a href="pages/programs.html">Programs</a></li>
+        <li><a href="pages/membership.html">Membership</a></li>
+        <li><a href="pages/trainers.html">Trainers</a></li>
+        <li><a href="pages/contact.html">Contact</a></li>
+        <li><a href="pages/register.html" class="btn-primary">Join Now</a></li>
+    </ul>
+
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+</nav>
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            <i class="fas fa-bolt"></i>
+            WELCOME TO DAY TO DAY FITNESS
+        </div>
+
+        <h1>
+            BUILD YOUR<br>
+            <span>STRONGEST</span> SELF
+        </h1>
+
+        <p class="tagline">
+            TRAIN • IMPROVE • STAY FIT
+        </p>
+
+        <p class="hero-description">
+            Your fitness journey starts here. Discover professional
+            training, modern facilities and a supportive environment
+            designed to help you achieve your fitness goals.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="pages/register.html" class="btn-primary">
+                JOIN NOW <i class="fas fa-arrow-right"></i>
+            </a>
+
+            <a href="pages/programs.html" class="btn-secondary">
+                EXPLORE PROGRAMS
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="stats-section">
+
+    <div class="stats-grid">
+
+        <div class="stat-box">
+            <h2>01</h2>
+            <p>Your Fitness Journey</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>24/7</h2>
+            <p>Fitness Motivation</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>100%</h2>
+            <p>Commitment</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>GO</h2>
+            <p>Achieve Your Goals</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- WHY CHOOSE US -->
+
+<section class="home-section">
+
+    <div class="section-heading">
+
+        <small>WHY CHOOSE US</small>
+
+        <h2>MORE THAN JUST <span>A GYM</span></h2>
+
+        <p>
+            Everything you need to build a stronger, healthier lifestyle.
+        </p>
+
+    </div>
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+            <i class="fas fa-dumbbell"></i>
+            <h3>Modern Equipment</h3>
+            <p>
+                Train with modern fitness equipment designed to support
+                your workout journey.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fas fa-user-tie"></i>
+            <h3>Expert Guidance</h3>
+            <p>
+                Get guidance and support to improve your workout
+                techniques and fitness routine.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fas fa-heart-pulse"></i>
+            <h3>Healthy Lifestyle</h3>
+            <p>
+                Build healthy habits and make fitness a part of
+                your everyday life.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta-section">
+
+    <h2>READY TO <span>TRANSFORM?</span></h2>
+
+    <p>
+        Take the first step towards your fitness journey today.
+    </p>
+
+    <a href="pages/register.html" class="btn-primary">
+        START YOUR JOURNEY <i class="fas fa-arrow-right"></i>
+    </a>
+
+</section>
+
+<!-- CUSTOMER REVIEWS -->
+
+<section id="reviews" class="home-section">
+
+    <div class="section-heading">
+
+        <small>MEMBER EXPERIENCES</small>
+
+        <h2>WHAT OUR <span>MEMBERS SAY</span></h2>
+
+        <p>
+            Real feedback from people who are part of our fitness community.
+        </p>
+
+    </div>
+
+    <div id="review-summary"></div>
+
+    <div id="review-cards" class="card-grid"></div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-columns">
+
+        <div class="footer-col">
+            <h3>DAY TO DAY FITNESS</h3>
+            <p>
+                Your fitness journey starts here.
+                Train stronger, live healthier and stay motivated.
+            </p>
+            <p>
+                Chokkanahalli, Karnataka, India<br>
+                Near Presidency University Girls and Boys Hostel
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4>CONTACT US</h4>
+
+            <p>
+                <i class="fas fa-user"></i>
+                Ajit Kumar:
+                <a href="tel:+918210884325">+91 8210884325</a>
+            </p>
+
+            <p>
+                <i class="fas fa-user"></i>
+                Adil:
+                <a href="tel:+919606434277">+91 9606434277</a>
+            </p>
+
+        </div>
+
+        <div class="footer-col">
+            <h4>FOLLOW US</h4>
+
+            <p>
+                Instagram:
+                <a href="https://instagram.com/wi_fi_9" target="_blank" rel="noopener">
+                    @wi_fi_9
+                </a>
+            </p>
+
+            <p>
+                Instagram:
+                <a href="https://instagram.com/m_adilll" target="_blank" rel="noopener">
+                    @m_adilll
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Day to Day Fitness. All Rights Reserved.</p>
+    </div>
+
+</footer>
+
+<script type="module" src="js/home.js"></script>
+<script src="js/main.js"></script>
+
 </body>
 </html>
