@@ -1,18 +1,469 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trainers – Day to Day Fitness</title>
+
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --black: #080808;
+            --dark: #111111;
+            --white: #ffffff;
+            --grey: #a1a1a1;
+            --red: #e32626;
+            --border: #292929;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            width: 100%;
+            min-height: 76px;
+            padding: 12px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #080808;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 10;
+        }
+
+        .navbar .logo img {
+            max-height: 49px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 27px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #d0d0d0;
+            font-size: 12px;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-links .btn-primary {
+            padding: 11px 20px;
+            background: var(--red);
+            color: white;
+            border-radius: 2px;
+        }
+
+        .nav-links .btn-primary:hover {
+            background: white;
+            color: black;
+        }
+
+        .menu-toggle {
+            color: white;
+            cursor: pointer;
+        }
+
+        /* TRAINER SECTION */
+
+        .content-section {
+            max-width: 1250px;
+            margin: auto;
+            padding: 75px 35px !important;
+        }
+
+        .section-top {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 45px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 28px;
+        }
+
+        .section-label {
+            color: var(--red);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 13px;
+        }
+
+        .content-section h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(38px, 6vw, 68px);
+            line-height: 1.05;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .content-section h1 span {
+            color: var(--red);
+        }
+
+        .section-number {
+            font-family: 'Oswald', sans-serif;
+            color: #333;
+            font-size: 55px;
+            font-weight: 700;
+        }
+
+        /* ADD BUTTON */
+
+        .admin-action {
+            margin-bottom: 28px;
+        }
+
+        .admin-action .btn-primary {
+            padding: 12px 21px;
+            background: var(--red);
+            color: white;
+            border: 1px solid var(--red);
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .admin-action .btn-primary:hover {
+            background: transparent;
+            color: var(--red);
+        }
+
+        /* TRAINER GRID */
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+            transition: transform .35s, border-color .35s;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: var(--red);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--red);
+            z-index: 2;
+            transition: width .35s;
+        }
+
+        .card:hover::before {
+            width: 100%;
+        }
+
+        .trainer-image {
+            height: 330px;
+            overflow: hidden;
+            background: #191919;
+            position: relative;
+        }
+
+        .trainer-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            filter: grayscale(100%);
+            transition: transform .6s, filter .4s;
+        }
+
+        .card:hover .trainer-image img {
+            transform: scale(1.06);
+            filter: grayscale(0%);
+        }
+
+        .trainer-image::after {
+            content: "";
+            position: absolute;
+            inset: 45% 0 0;
+            background: linear-gradient(transparent, rgba(0,0,0,.6));
+            pointer-events: none;
+        }
+
+        .card-body {
+            padding: 24px 22px 25px;
+        }
+
+        .trainer-tag {
+            color: var(--red);
+            font-size: 10px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .card-body h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 27px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .card-body p {
+            color: var(--grey);
+            font-size: 12px;
+            line-height: 1.8;
+            margin-bottom: 9px;
+        }
+
+        .card-body p strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        .trainer-buttons {
+            display: flex;
+            gap: 9px;
+            margin-top: 21px;
+        }
+
+        .trainer-buttons button {
+            padding: 10px 16px;
+            background: transparent;
+            border: 1px solid var(--red);
+            color: white;
+            border-radius: 2px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .trainer-buttons button:hover {
+            background: var(--red);
+        }
+
+        .trainer-buttons button:last-child {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        .trainer-buttons button:last-child:hover {
+            background: white;
+            color: black;
+            border-color: white;
+        }
+
+        /* WHATSAPP */
+
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 22px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .whatsapp-float a {
+            width: 45px;
+            height: 45px;
+            background: var(--red);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 19px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.4);
+            transition: .3s;
+        }
+
+        .whatsapp-float a:hover {
+            background: white;
+            color: black;
+            transform: scale(1.1);
+        }
+
+        /* FOOTER */
+
+        .footer {
+            background: #050505;
+            border-top: 1px solid var(--border);
+            padding: 48px 7% 20px;
+        }
+
+        .footer-columns {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        .footer-col h3,
+        .footer-col h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 22px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .footer-col h3::after {
+            content: "";
+            display: block;
+            height: 2px;
+            width: 35px;
+            background: var(--red);
+            margin-top: 9px;
+        }
+
+        .footer-col p {
+            color: var(--grey);
+            font-size: 12px;
+            line-height: 2;
+        }
+
+        .footer-col a {
+            color: var(--grey);
+            transition: .3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--red);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 35px auto 0;
+            padding-top: 19px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #777;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .navbar {
+                padding: 14px 5%;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .trainer-image {
+                height: 290px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .content-section {
+                padding: 50px 18px !important;
+            }
+
+            .section-top {
+                align-items: flex-start;
+            }
+
+            .section-number {
+                font-size: 35px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .trainer-image {
+                height: 350px;
+            }
+
+            .nav-links {
+                width: 100%;
+                gap: 12px 17px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .footer {
+                padding: 40px 6% 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
+
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="logo"><img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo" /></div>
+        <div class="logo">
+            <img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo" />
+        </div>
+
         <ul class="nav-links">
             <li><a href="../index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -22,62 +473,120 @@
             <li><a href="contact.html">Contact</a></li>
             <li><a href="register.html" class="btn-primary">Join Now</a></li>
         </ul>
+
         <div class="menu-toggle"><i class="fas fa-bars"></i></div>
     </nav>
 
-    <section class="content-section" style="padding:2rem; max-width:1200px; margin:auto;">
-        <h1>Our Professional Trainers</h1>
-        <button class="btn-primary" style="margin-bottom:1rem;">Add Trainer (admin)</button>
+    <!-- Trainers -->
+    <section class="content-section">
+
+        <div class="section-top">
+            <div>
+                <div class="section-label">THE PEOPLE BEHIND YOUR PROGRESS</div>
+                <h1>OUR PROFESSIONAL<br><span>TRAINERS.</span></h1>
+            </div>
+
+            <div class="section-number">01 / 03</div>
+        </div>
+
+        <div class="admin-action">
+            <button class="btn-primary">Add Trainer (admin)</button>
+        </div>
+
         <div class="card-grid">
+
             <!-- Trainer 1 -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1602537226638-1e0ff2924916?auto=format&fit=crop&w=800&q=80" alt="Trainer 1" />
+                <div class="trainer-image">
+                    <img src="https://images.unsplash.com/photo-1602537226638-1e0ff2924916?auto=format&fit=crop&w=800&q=80" alt="Trainer 1" />
+                </div>
+
                 <div class="card-body">
+                    <div class="trainer-tag">STRENGTH SPECIALIST / 01</div>
                     <h3>Rohit Sharma</h3>
                     <p><strong>Specialization:</strong> Strength & Hypertrophy</p>
                     <p>10 years of experience training athletes and beginners.</p>
-                    <button class="btn-primary" style="margin-right:0.5rem;">Edit (admin)</button>
-                    <button class="btn-primary" style="background:#c00;">Delete (admin)</button>
+
+                    <div class="trainer-buttons">
+                        <button class="btn-primary">Edit (admin)</button>
+                        <button class="btn-primary">Delete (admin)</button>
+                    </div>
                 </div>
             </div>
+
             <!-- Trainer 2 -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1583454110551-447e032ba587?auto=format&fit=crop&w=800&q=80" alt="Trainer 2" />
+                <div class="trainer-image">
+                    <img src="https://images.unsplash.com/photo-1583454110551-447e032ba587?auto=format&fit=crop&w=800&q=80" alt="Trainer 2" />
+                </div>
+
                 <div class="card-body">
+                    <div class="trainer-tag">MOVEMENT SPECIALIST / 02</div>
                     <h3>Priya Singh</h3>
                     <p><strong>Specialization:</strong> Functional & Mobility</p>
                     <p>Certified functional trainer, loves group classes.</p>
-                    <button class="btn-primary" style="margin-right:0.5rem;">Edit (admin)</button>
-                    <button class="btn-primary" style="background:#c00;">Delete (admin)</button>
+
+                    <div class="trainer-buttons">
+                        <button class="btn-primary">Edit (admin)</button>
+                        <button class="btn-primary">Delete (admin)</button>
+                    </div>
                 </div>
             </div>
+
             <!-- Trainer 3 -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1554151228-14d9bcb2baf1?auto=format&fit=crop&w=800&q=80" alt="Trainer 3" />
+                <div class="trainer-image">
+                    <img src="https://images.unsplash.com/photo-1554151228-14d9bcb2baf1?auto=format&fit=crop&w=800&q=80" alt="Trainer 3" />
+                </div>
+
                 <div class="card-body">
+                    <div class="trainer-tag">ENDURANCE SPECIALIST / 03</div>
                     <h3>Amit Patel</h3>
                     <p><strong>Specialization:</strong> Cardio & Endurance</p>
                     <p>Marathon runner, designs cardio programs.</p>
-                    <button class="btn-primary" style="margin-right:0.5rem;">Edit (admin)</button>
-                    <button class="btn-primary" style="background:#c00;">Delete (admin)</button>
+
+                    <div class="trainer-buttons">
+                        <button class="btn-primary">Edit (admin)</button>
+                        <button class="btn-primary">Delete (admin)</button>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
     <!-- WhatsApp floating button -->
     <div class="whatsapp-float">
         <a href="https://wa.me/918210884325?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20trainer%20services." target="_blank"><i class="fab fa-whatsapp"></i></a>
+
         <a href="https://wa.me/919606434277?text=Hello%20Day%20to%20Day%20Fitness!%20I%20have%20a%20question%20about%20trainer%20services." target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-columns">
-            <div class="footer-col"><h3>Day to Day Fitness</h3><p>Chokkanahalli, Karnataka, India<br />Near Presidency University Girls and Boys Hostel</p></div>
-            <div class="footer-col"><h4>Contact</h4><p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p><p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p></div>
-            <div class="footer-col"><h4>Follow Us</h4><p>Instagram: @wi_fi_9, @m_adilll</p></div>
+
+            <div class="footer-col">
+                <h3>Day to Day Fitness</h3>
+                <p>Chokkanahalli, Karnataka, India<br />Near Presidency University Girls and Boys Hostel</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p>
+                <p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <p>Instagram: @wi_fi_9, @m_adilll</p>
+            </div>
+
         </div>
-        <div class="footer-bottom"><p>&copy; 2026 Day to Day Fitness. All rights reserved.</p></div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Day to Day Fitness. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="../js/main.js"></script>
