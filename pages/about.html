@@ -1,78 +1,741 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About – Day to Day Fitness</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | Day to Day Fitness</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* GLOBAL */
+:root {
+    --gold: #d6ad60;
+    --dark: #090909;
+    --card: #151515;
+    --light: #ffffff;
+    --muted: #aaaaaa;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--dark);
+    color: var(--light);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #080808;
+    padding: 15px 7%;
+    border-bottom: 1px solid #292929;
+}
+
+.nav-links a {
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+/* HERO SECTION */
+.about-hero {
+    min-height: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+
+    background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
+    url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600');
+
+    background-size: cover;
+    background-position: center;
+}
+
+.about-hero-content {
+    max-width: 850px;
+}
+
+.hero-tag {
+    color: var(--gold);
+    letter-spacing: 5px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.about-hero h1 {
+    font-size: clamp(40px, 7vw, 75px);
+    font-weight: 900;
+    margin: 20px 0;
+    text-transform: uppercase;
+}
+
+.about-hero h1 span {
+    color: var(--gold);
+}
+
+.about-hero p {
+    color: #ddd;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* COMMON SECTION */
+.about-section {
+    max-width: 1150px;
+    margin: auto;
+    padding: 85px 25px;
+}
+
+.section-tag {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.section-title {
+    font-size: clamp(28px, 4vw, 42px);
+    margin: 15px 0;
+    font-weight: 900;
+}
+
+.section-title span {
+    color: var(--gold);
+}
+
+.section-description {
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 800px;
+    font-size: 16px;
+}
+
+/* INTRO SECTION */
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px;
+    align-items: center;
+}
+
+.intro-image {
+    height: 390px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid #393126;
+}
+
+.intro-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.intro-image:hover img {
+    transform: scale(1.06);
+}
+
+.intro-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent,rgba(0,0,0,.45));
+}
+
+.intro-content h2 {
+    font-size: 35px;
+    line-height: 1.3;
+    margin: 15px 0;
+}
+
+.intro-content h2 span {
+    color: var(--gold);
+}
+
+.intro-content p {
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 15px;
+}
+
+/* MISSION VISION */
+.mv-section {
+    background: #101010;
+    padding: 85px 25px;
+}
+
+.mv-container {
+    max-width: 1150px;
+    margin: auto;
+}
+
+.mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.mv-card {
+    padding: 38px;
+    background: linear-gradient(145deg,#1c1c1c,#111);
+    border: 1px solid #35302a;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.mv-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold);
+}
+
+.mv-icon {
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #302719;
+    color: var(--gold);
+    border-radius: 12px;
+    font-size: 27px;
+    margin-bottom: 25px;
+}
+
+.mv-card h3 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.mv-card p {
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 15px;
+}
+
+/* FACILITIES */
+.facility-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 40px;
+}
+
+.facility-card {
+    padding: 30px 22px;
+    background: var(--card);
+    border: 1px solid #303030;
+    border-radius: 13px;
+    transition: .3s;
+}
+
+.facility-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-6px);
+    background: #1b1915;
+}
+
+.facility-icon {
+    font-size: 30px;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.facility-card h3 {
+    font-size: 17px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* OWNERS */
+.owners-section {
+    background: #101010;
+    padding: 85px 25px;
+}
+
+.owners-container {
+    max-width: 1150px;
+    margin: auto;
+}
+
+.owner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.owner-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 30px;
+    background: linear-gradient(145deg,#1d1d1d,#111);
+    border: 1px solid #353535;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.owner-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+}
+
+.owner-icon {
+    min-width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #302719;
+    color: var(--gold);
+    font-size: 30px;
+    border-radius: 50%;
+}
+
+.owner-card h3 {
+    font-size: 22px;
+    margin: 0 0 10px;
+}
+
+.owner-card p {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* GOLD BANNER */
+.about-banner {
+    max-width: 1100px;
+    margin: 0 auto 85px;
+    padding: 55px 25px;
+    text-align: center;
+    background: linear-gradient(120deg,#302719,#17130d);
+    border: 1px solid #765d32;
+    border-radius: 15px;
+}
+
+.about-banner h2 {
+    font-size: 32px;
+    margin: 0 0 15px;
+}
+
+.about-banner h2 span {
+    color: var(--gold);
+}
+
+.about-banner p {
+    color: #ccc;
+    line-height: 1.8;
+}
+
+/* FOOTER */
+.footer {
+    background: #050505;
+    border-top: 1px solid #292929;
+}
+
+.footer-columns {
+    max-width: 1150px;
+    margin: auto;
+    padding: 45px 25px;
+}
+
+.footer-col h3,
+.footer-col h4 {
+    color: var(--gold);
+}
+
+.footer-col p {
+    color: #aaa;
+    line-height: 1.8;
+}
+
+.footer-col a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.footer-col a:hover {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    border-top: 1px solid #282828;
+    text-align: center;
+    padding: 18px;
+    color: #888;
+}
+
+/* RESPONSIVE */
+@media(max-width: 800px) {
+
+    .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .intro-image {
+        height: 280px;
+    }
+
+    .mv-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .facility-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .owner-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-section {
+        padding: 60px 20px;
+    }
+
+    .about-hero {
+        min-height: 320px;
+    }
+
+    .about-banner {
+        margin: 0 15px 60px;
+    }
+}
+
+@media(max-width: 480px) {
+
+    .facility-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .owner-card {
+        padding: 22px 16px;
+        gap: 15px;
+    }
+
+    .owner-icon {
+        min-width: 58px;
+        height: 58px;
+        font-size: 23px;
+    }
+
+    .about-hero h1 {
+        font-size: 38px;
+    }
+}
+
+</style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo" />
-        </div>
-        <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="programs.html">Programs</a></li>
-            <li><a href="membership.html">Membership</a></li>
-            <li><a href="trainers.html">Trainers</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="register.html" class="btn-primary">Join Now</a></li>
-        </ul>
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-    </nav>
 
-    <section class="content-section" style="padding:2rem; max-width:900px; margin:auto;">
-        <h1>About Day to Day Fitness</h1>
-        <p>Welcome to <strong>DAY TO DAY FITNESS</strong>, a premium gym dedicated to helping you achieve your fitness goals. Located in Chokkanahalli, Karnataka, we provide state‑of‑the‑art equipment, experienced trainers, and a motivating environment.</p>
-        
-        <h2>Our Mission</h2>
-        <p>To empower individuals to lead healthier lives through personalized training, supportive community, and cutting‑edge facilities.</p>
-        
-        <h2>Our Vision</h2>
-        <p>To become the most trusted fitness destination in the region, fostering transformation and lifelong wellness.</p>
-        
-        <h2>Facilities</h2>
-        <ul>
-            <li>Fully equipped weight & cardio zones</li>
-            <li>Functional training area</li>
-            <li>Group class studio</li>
-            <li>Modern locker rooms & showers</li>
-            <li>Nutrition counseling corner</li>
-        </ul>
-        
-        <h2>Our Owners</h2>
-        <p><strong>Ajit Kumar</strong> – Passionate about strength training and community building.<br/>
-        <strong>Adil</strong> – Expert in functional fitness and personalized coaching.</p>
-    </section>
+<!-- NAVIGATION -->
+<nav class="navbar">
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-columns">
-            <div class="footer-col">
-                <h3>Day to Day Fitness</h3>
-                <p>Chokkanahalli, Karnataka, India<br />Near Presidency University Girls and Boys Hostel</p>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p>Ajit Kumar: <a href="tel:+918210884325">+91 8210884325</a></p>
-                <p>Adil: <a href="tel:+919606434277">+91 9606434277</a></p>
-            </div>
-            <div class="footer-col">
-                <h4>Follow Us</h4>
-                <p>Instagram: @wi_fi_9, @m_adilll</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Day to Day Fitness. All rights reserved.</p>
-        </div>
-    </footer>
+    <div class="logo">
+        <img src="../assets/logo/logo.png" alt="Day to Day Fitness Logo">
+    </div>
 
-    <script src="../js/main.js"></script>
+    <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="trainers.html">Trainers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="register.html" class="btn-primary">Join Now</a></li>
+    </ul>
+
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+
+    <div class="about-hero-content">
+
+        <div class="hero-tag">WELCOME TO OUR FITNESS WORLD</div>
+
+        <h1>ABOUT <span>US</span></h1>
+
+        <p>
+            Discover Day to Day Fitness – A premium gym
+            dedicated to helping you achieve your fitness goals.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- INTRODUCTION -->
+<section class="about-section">
+
+    <div class="intro-grid">
+
+        <div class="intro-image">
+            <img
+                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1000"
+                alt="Day to Day Fitness Gym">
+        </div>
+
+        <div class="intro-content">
+
+            <div class="section-tag">WHO WE ARE</div>
+
+            <h2>
+                WELCOME TO
+                <span>DAY TO DAY FITNESS</span>
+            </h2>
+
+            <p>
+                Welcome to <strong>DAY TO DAY FITNESS</strong>,
+                a premium gym dedicated to helping you achieve
+                your fitness goals. Located in Chokkanahalli,
+                Karnataka, we provide state-of-the-art equipment,
+                experienced trainers, and a motivating environment.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MISSION & VISION -->
+<section class="mv-section">
+
+    <div class="mv-container">
+
+        <div class="section-tag">OUR PURPOSE</div>
+
+        <h2 class="section-title">
+            OUR <span>MISSION & VISION</span>
+        </h2>
+
+        <div class="mv-grid">
+
+            <div class="mv-card">
+
+                <div class="mv-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+
+                <h3>Our Mission</h3>
+
+                <p>
+                    To empower individuals to lead healthier lives
+                    through personalized training, supportive
+                    community, and cutting-edge facilities.
+                </p>
+
+            </div>
+
+            <div class="mv-card">
+
+                <div class="mv-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+
+                <h3>Our Vision</h3>
+
+                <p>
+                    To become the most trusted fitness destination
+                    in the region, fostering transformation and
+                    lifelong wellness.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FACILITIES -->
+<section class="about-section">
+
+    <div class="section-tag">WHAT WE OFFER</div>
+
+    <h2 class="section-title">
+        OUR <span>FACILITIES</span>
+    </h2>
+
+    <p class="section-description">
+        Explore the facilities available at Day to Day Fitness.
+    </p>
+
+    <div class="facility-grid">
+
+        <div class="facility-card">
+            <div class="facility-icon">
+                <i class="fas fa-dumbbell"></i>
+            </div>
+            <h3>Fully equipped weight & cardio zones</h3>
+        </div>
+
+        <div class="facility-card">
+            <div class="facility-icon">
+                <i class="fas fa-person-running"></i>
+            </div>
+            <h3>Functional training area</h3>
+        </div>
+
+        <div class="facility-card">
+            <div class="facility-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h3>Group class studio</h3>
+        </div>
+
+        <div class="facility-card">
+            <div class="facility-icon">
+                <i class="fas fa-shower"></i>
+            </div>
+            <h3>Modern locker rooms & showers</h3>
+        </div>
+
+        <div class="facility-card">
+            <div class="facility-icon">
+                <i class="fas fa-apple-whole"></i>
+            </div>
+            <h3>Nutrition counseling corner</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- OWNERS -->
+<section class="owners-section">
+
+    <div class="owners-container">
+
+        <div class="section-tag">MEET OUR TEAM</div>
+
+        <h2 class="section-title">
+            OUR <span>OWNERS</span>
+        </h2>
+
+        <div class="owner-grid">
+
+            <div class="owner-card">
+
+                <div class="owner-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <div>
+                    <h3>Ajit Kumar</h3>
+                    <p>
+                        Passionate about strength training
+                        and community building.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="owner-card">
+
+                <div class="owner-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <div>
+                    <h3>Adil</h3>
+                    <p>
+                        Expert in functional fitness
+                        and personalized coaching.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BOTTOM BANNER -->
+<section class="about-banner">
+
+    <h2>
+        DAY TO DAY <span>FITNESS</span>
+    </h2>
+
+    <p>
+        To empower individuals to lead healthier lives
+        through personalized training, supportive community,
+        and cutting-edge facilities.
+    </p>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <div class="footer-columns">
+
+        <div class="footer-col">
+            <h3>Day to Day Fitness</h3>
+            <p>
+                Chokkanahalli, Karnataka, India<br>
+                Near Presidency University Girls and Boys Hostel
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>
+                Ajit Kumar:
+                <a href="tel:+918210884325">+91 8210884325</a>
+            </p>
+            <p>
+                Adil:
+                <a href="tel:+919606434277">+91 9606434277</a>
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <p>Instagram: @wi_fi_9, @m_adilll</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Day to Day Fitness. All rights reserved.</p>
+    </div>
+
+</footer>
+
+<script src="../js/main.js"></script>
+
 </body>
 </html>
